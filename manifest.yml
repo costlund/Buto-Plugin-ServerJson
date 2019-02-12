@@ -1,0 +1,15 @@
+version: '1.0'
+history:
+  '1.0':
+    date: '2019-02-07'
+    description: 'Manifest created.'
+plugin: {  }
+sys:
+  -
+    name: mercury
+    version:
+      - '1.0'
+php:
+  - '7.2'
+author: Claes Östlund
+description: ''
