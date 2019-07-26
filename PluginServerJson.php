@@ -1,6 +1,8 @@
 <?php
 class PluginServerJson{
   public $error_message = null;
+  public $username = null;
+  public $password = null;
   public function send($url, $data, $method = 'post'){
     $method = strtolower($method);
     $this->error_message = null;
@@ -17,6 +19,9 @@ class PluginServerJson{
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
     }
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    if($this->username && $this->password){
+      curl_setopt($ch, CURLOPT_USERPWD, $this->username . ":" . $this->password);
+    }
     $result = curl_exec($ch);
     curl_close($ch);
     /**
@@ -35,7 +40,17 @@ class PluginServerJson{
   }
   public function get($url){
     $this->error_message = null;
-    $data = @file_get_contents($url);
+    if($this->username && $this->password){
+      $auth = base64_encode($this->username.":".$this->password);
+      $context = stream_context_create([
+          "http" => [
+              "header" => "Authorization: Basic $auth"
+          ]
+      ]);
+      $data = @file_get_contents($url, false, $context);
+    }else{
+      $data = @file_get_contents($url);
+    }
     if($data===false){
       $this->error_message = 'Could not get data from url '.$url.'!';
       return array();

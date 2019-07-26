@@ -1,5 +1,8 @@
-version: '1.0'
+version: '1.1'
 history:
+  '1.1':
+    date: '2019-07-26'
+    description: 'Basic auth.'
   '1.0':
     date: '2019-02-07'
     description: 'Manifest created.'
