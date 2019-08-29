@@ -1,5 +1,8 @@
-version: '1.1'
+version: '1.2'
 history:
+  '1.2':
+    date: '2019-08-29'
+    description: 'Get image method.'
   '1.1':
     date: '2019-07-26'
     description: 'Basic auth.'

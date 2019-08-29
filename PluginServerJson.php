@@ -58,6 +58,26 @@ class PluginServerJson{
       return json_decode($data, true);
     }
   }
+  public function get_image($url){
+    $this->error_message = null;
+    if($this->username && $this->password){
+      $auth = base64_encode($this->username.":".$this->password);
+      $context = stream_context_create([
+          "http" => [
+              "header" => "Authorization: Basic $auth"
+          ]
+      ]);
+      $data = @file_get_contents($url, false, $context);
+    }else{
+      $data = @file_get_contents($url);
+    }
+    if($data===false){
+      $this->error_message = 'Could not get data from url '.$url.'!';
+      return array();
+    }else{
+      return $data;
+    }
+  }
   private function validate($str){
     $json = json_decode($str);
     $message = '';

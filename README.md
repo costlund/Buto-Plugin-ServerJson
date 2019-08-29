@@ -16,9 +16,6 @@ $server->username = '_my_username_';
 $server->password = '_my_password_';
 ```
 
-
-
-
 ### Send
 
 ```
@@ -31,4 +28,15 @@ print_r(array($server->error_message, $result));
 ```
 $result = $server->get('https://www.world.com');
 print_r(array($server->error_message, $result));
+```
+
+### get_image($url)
+Use this method to get image.
+
+```
+public function page_image(){
+  $str = $server->get_image('_url_to_jpeg_image_');
+  header('Content-type: image/jpeg');
+  exit($str);
+}
 ```
