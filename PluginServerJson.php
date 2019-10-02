@@ -14,6 +14,9 @@ class PluginServerJson{
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
     if($method=='post'){
       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    }elseif($method=='delete'){
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
     }elseif($method=='put'){
       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($payload)));
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
