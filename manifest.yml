@@ -1,16 +1,24 @@
-version: '1.3'
+version: '1.4.0'
 history:
-  '1.3':
+  '1.4.0':
+    date: '2019-12-17'
+    title: Validation
+    description: 'Improved validation method.'
+  '1.3.0':
     date: '2019-10-02'
+    title: Delete
     description: 'Add delete in send method.'
-  '1.2':
+  '1.2.0':
     date: '2019-08-29'
+    title: Image
     description: 'Get image method.'
-  '1.1':
+  '1.1.0':
     date: '2019-07-26'
+    title: Basic auth
     description: 'Basic auth.'
-  '1.0':
+  '1.0.0':
     date: '2019-02-07'
+    title: First version
     description: 'Manifest created.'
 plugin: {  }
 sys:

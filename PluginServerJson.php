@@ -84,40 +84,44 @@ class PluginServerJson{
   private function validate($str){
     $json = json_decode($str);
     $message = '';
-    switch (json_last_error()) {
-      case JSON_ERROR_NONE:
-        $message = '';
-        break;
-      case JSON_ERROR_DEPTH:
-        $message = 'The maximum stack depth has been exceeded.';
-        break;
-      case JSON_ERROR_STATE_MISMATCH:
-        $message = 'Invalid or malformed JSON.';
-        break;
-      case JSON_ERROR_CTRL_CHAR:
-        $message = 'Control character error, possibly incorrectly encoded.';
-        break;
-      case JSON_ERROR_SYNTAX:
-        $message = 'Syntax error, malformed JSON.';
-        break;
-      case JSON_ERROR_UTF8:
-        // PHP >= 5.3.3
-        $message = 'Malformed UTF-8 characters, possibly incorrectly encoded.';
-        break;
-      case JSON_ERROR_RECURSION:
-        // PHP >= 5.5.0
-        $message = 'One or more recursive references in the value to be encoded.';
-        break;
-      case JSON_ERROR_INF_OR_NAN:
-        // PHP >= 5.5.0
-        $message = 'One or more NAN or INF values in the value to be encoded.';
-        break;
-      case JSON_ERROR_UNSUPPORTED_TYPE:
-        $message = 'A value of a type that cannot be encoded was given.';
-        break;
-      default:
-        $message = 'Unknown JSON error occured.';
-        break;
+    if($json===false){
+      $message = 'Result is FALSE.';
+    }else{
+      switch (json_last_error()) {
+        case JSON_ERROR_NONE:
+          $message = '';
+          break;
+        case JSON_ERROR_DEPTH:
+          $message = 'The maximum stack depth has been exceeded.';
+          break;
+        case JSON_ERROR_STATE_MISMATCH:
+          $message = 'Invalid or malformed JSON.';
+          break;
+        case JSON_ERROR_CTRL_CHAR:
+          $message = 'Control character error, possibly incorrectly encoded.';
+          break;
+        case JSON_ERROR_SYNTAX:
+          $message = 'Syntax error, malformed JSON.';
+          break;
+        case JSON_ERROR_UTF8:
+          // PHP >= 5.3.3
+          $message = 'Malformed UTF-8 characters, possibly incorrectly encoded.';
+          break;
+        case JSON_ERROR_RECURSION:
+          // PHP >= 5.5.0
+          $message = 'One or more recursive references in the value to be encoded.';
+          break;
+        case JSON_ERROR_INF_OR_NAN:
+          // PHP >= 5.5.0
+          $message = 'One or more NAN or INF values in the value to be encoded.';
+          break;
+        case JSON_ERROR_UNSUPPORTED_TYPE:
+          $message = 'A value of a type that cannot be encoded was given.';
+          break;
+        default:
+          $message = 'Unknown JSON error occured.';
+          break;
+      }
     }
     return $message;
   }
