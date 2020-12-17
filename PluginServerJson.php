@@ -55,7 +55,7 @@ class PluginServerJson{
       $data = @file_get_contents($url);
     }
     if($data===false){
-      $this->error_message = 'Could not get data from url '.$url.'!';
+      $this->error_message = __CLASS__.' says: Could not get data from url '.$url.'!';
       return array();
     }else{
       return json_decode($data, true);
