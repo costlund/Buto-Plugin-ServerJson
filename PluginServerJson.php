@@ -1,6 +1,7 @@
 <?php
 class PluginServerJson{
   public $error_message = null;
+  public $error_content = null;
   public $username = null;
   public $password = null;
   public function send($url, $data, $method = 'post'){
@@ -36,6 +37,7 @@ class PluginServerJson{
      */
     if($error_message){
       $this->error_message = $error_message;
+      $this->error_content = $result;
       return array();
     }else{
       return json_decode($result, true);
