@@ -45,17 +45,21 @@ class PluginServerJson{
   }
   public function get($url){
     $this->error_message = null;
+    $context = new PluginWfArray();
+    /**
+     * auth
+     */
     if($this->username && $this->password){
       $auth = base64_encode($this->username.":".$this->password);
-      $context = stream_context_create([
-          "http" => [
-              "header" => "Authorization: Basic $auth"
-          ]
-      ]);
-      $data = @file_get_contents($url, false, $context);
-    }else{
-      $data = @file_get_contents($url);
+      $context->set('http/header', "Authorization: Basic $auth");
     }
+    /**
+     * get contents
+     */
+    $data = @file_get_contents($url, false, stream_context_create((array)$context->get()));
+    /**
+     * handle error
+     */
     if($data===false){
       $this->error_message = __CLASS__.' says: Could not get data from url '.$url.'!';
       return array();

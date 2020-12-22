@@ -1,5 +1,9 @@
-version: '1.4.2'
+version: '1.4.3'
 history:
+  '1.4.3':
+    date: '2020-12-22'
+    title: Code improvement
+    description: 'Minor changes in method get.'
   '1.4.2':
     date: '2020-12-20'
     title: Error content
