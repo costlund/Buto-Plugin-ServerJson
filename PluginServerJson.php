@@ -4,6 +4,7 @@ class PluginServerJson{
   public $error_content = null;
   public $username = null;
   public $password = null;
+  public $token = null;
   public function send($url, $data, $method = 'post'){
     $method = strtolower($method);
     $this->error_message = null;
@@ -11,15 +12,30 @@ class PluginServerJson{
      * Curl request.
      */
     $ch = curl_init($url);
+    /**
+     * http header
+     */
+    $httpheader = new PluginWfArray();
+    $httpheader->set(true, 'Content-Type:application/json');
+    if($this->token){
+      /**
+       * token
+       */
+      $httpheader->set(true, "Authorization: Bearer ".$this->token);
+    }
+    /**
+     * 
+     */
     $payload = json_encode($data);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
     if($method=='post'){
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
     }elseif($method=='delete'){
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
     }elseif($method=='put'){
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($payload)));
+      $httpheader->set(true, 'Content-Length: ' . strlen($payload));
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
     }
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -52,6 +68,8 @@ class PluginServerJson{
     if($this->username && $this->password){
       $auth = base64_encode($this->username.":".$this->password);
       $context->set('http/header', "Authorization: Basic $auth");
+    }elseif($this->token){
+      $context->set('http/header', "Authorization: Bearer ".$this->token);
     }
     /**
      * get contents

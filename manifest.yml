@@ -1,5 +1,9 @@
-version: '1.4.3'
+version: '1.5.0'
 history:
+  '1.5.0':
+    date: '2021-01-14'
+    title: Token
+    description: 'Add token to get and send methods.'
   '1.4.3':
     date: '2020-12-22'
     title: Code improvement

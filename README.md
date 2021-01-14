@@ -16,6 +16,12 @@ $server->username = '_my_username_';
 $server->password = '_my_password_';
 ```
 
+### Token
+
+```
+$server->token = '_my_token_';
+```
+
 ### Send
 
 ```
