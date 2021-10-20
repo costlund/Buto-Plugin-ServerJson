@@ -46,3 +46,59 @@ public function page_image(){
   exit($str);
 }
 ```
+
+### Request widget
+Widget to test request.
+```
+  -
+    type: widget
+    data:
+      plugin: server/json
+      method: request
+      data:
+        type: get
+        url: 'http://localhost:8080/users'
+  -
+    type: widget
+    data:
+      plugin: server/json
+      method: request
+      data:
+        type: get
+        url: 'http://localhost:8080/user/2'
+  -
+    type: widget
+    data:
+      plugin: server/json
+      method: request
+      data:
+        type: post
+        url: 'http://localhost:8080/save'
+        data:
+          firstName: 'James'
+          lastName: 'Smith'
+          age: 88
+          occupation: 'Trainer'
+  -
+    type: widget
+    data:
+      plugin: server/json
+      method: request
+      data:
+        type: delete
+        url: 'http://localhost:8080/delete/13'
+  -
+    type: widget
+    data:
+      plugin: server/json
+      method: request
+      data:
+        type: put
+        url: 'http://localhost:8080/update/2'
+        data:
+          firstName: 'James'
+          lastName: 'Andersson'
+          age: 88
+          occupation: 'Trainer'
+```
+
