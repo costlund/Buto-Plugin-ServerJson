@@ -54,7 +54,7 @@ class PluginServerJson{
     if($error_message){
       $this->error_message = $error_message;
       $this->error_content = $result;
-      return json_encode(array('error' => array('message' => $error_message, 'content' => $result)), true);
+      return array('error' => array('message' => $error_message, 'content' => $result)) ;
     }else{
       return json_decode($result, true);
     }
@@ -80,7 +80,7 @@ class PluginServerJson{
      */
     if($data===false){
       $this->error_message = __CLASS__.' says: Could not get data from url '.$url.'!';
-      return array();
+      return array('error' => array('message' => $this->error_message, 'content' => $data));
     }else{
       return json_decode($data, true);
     }
@@ -151,6 +151,16 @@ class PluginServerJson{
   }
   public function widget_request($data){
     $data = new PluginWfArray($data);
+    /*
+     * params
+     */
+    if($data->get('data/params')){
+      foreach($data->get('data/params') as $v){
+        $data->set('data/url', str_replace('['.$v.']', wfRequest::get($v), $data->get('data/url')));      }
+    }
+    /*
+     *
+     */
     if($data->get('data/type')=='get'){
       $result = $this->get($data->get('data/url'));
     }elseif($data->get('data/type')=='post'){
@@ -160,8 +170,14 @@ class PluginServerJson{
     }elseif($data->get('data/type')=='put'){
       $result = $this->send($data->get('data/url'), $data->get('data/data'), 'put');
     }
+    /*
+     *
+     */
     $element = wfDocument::createHtmlElement('pre', wfHelp::getYmlDump($data->get('data')));
     wfDocument::renderElement(array($element));
+    /*
+     *
+     */
     $element = wfDocument::createHtmlElement('pre', wfHelp::getYmlDump($result));
     wfDocument::renderElement(array($element));
   }

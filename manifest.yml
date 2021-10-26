@@ -1,5 +1,13 @@
-version: '1.6.0'
+version: '1.8.0'
 history:
+  '1.8.0':
+    date: '2021-10-26'
+    title: 'Error'
+    description: 'Return array instead of json on error in methods send, get.'
+  '1.7.0':
+    date: '2021-10-26'
+    title: 'Test widget'
+    description: 'Improvements.'
   '1.6.0':
     date: '2021-10-20'
     title: 'Test widget'
