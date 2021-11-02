@@ -1,5 +1,9 @@
-version: '1.8.0'
+version: '1.9.0'
 history:
+  '1.9.0':
+    date: '2021-11-02'
+    title: 'Method get return'
+    description: 'If data is empty we return message about content is not a json string!'
   '1.8.0':
     date: '2021-10-26'
     title: 'Error'

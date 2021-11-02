@@ -82,7 +82,12 @@ class PluginServerJson{
       $this->error_message = __CLASS__.' says: Could not get data from url '.$url.'!';
       return array('error' => array('message' => $this->error_message, 'content' => $data));
     }else{
-      return json_decode($data, true);
+      $return = json_decode($data, true);
+      if(!is_null($return)){
+        return $return;
+      }else{
+        return array('message' => 'Content is not a json string!', 'content' => $data);
+      }
     }
   }
   public function get_image($url){
