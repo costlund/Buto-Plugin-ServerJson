@@ -5,6 +5,7 @@ class PluginServerJson{
   public $username = null;
   public $password = null;
   public $token = null;
+  public $client_secret = null;
   public function send($url, $data, $method = 'post'){
     $method = strtolower($method);
     $this->error_message = null;
@@ -16,12 +17,19 @@ class PluginServerJson{
      * http header
      */
     $httpheader = new PluginWfArray();
-    $httpheader->set(true, 'Content-Type:application/json');
+    $httpheader->set(true, 'Content-Type: application/json');
+    $httpheader->set(true, "Accept: application/json");
     if($this->token){
       /**
        * token
        */
       $httpheader->set(true, "Authorization: Bearer ".$this->token);
+    }
+    if($this->client_secret){
+      /**
+       * client_secret
+       */
+      $httpheader->set(true, "Client-Secret: ".$this->client_secret);
     }
     /**
      * 
@@ -37,6 +45,9 @@ class PluginServerJson{
       $httpheader->set(true, 'Content-Length: ' . strlen($payload));
       curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    }elseif($method=='get'){
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
     }
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     if($this->username && $this->password){

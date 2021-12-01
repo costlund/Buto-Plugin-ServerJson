@@ -1,5 +1,9 @@
-version: '1.9.0'
+version: '1.10.0'
 history:
+  '1.10.0':
+    date: '2021-12-01'
+    title: 'Client secret'
+    description: 'Add param client_secret. Accept method get.'
   '1.9.0':
     date: '2021-11-02'
     title: 'Method get return'
