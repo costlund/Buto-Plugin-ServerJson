@@ -42,7 +42,7 @@ class PluginServerJson{
       curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
     }elseif($method=='put'){
-      $httpheader->set(true, 'Content-Length: ' . strlen($payload));
+      $httpheader->set(true, 'Content-Length: ' . wfPhpfunc::strlen($payload));
       curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader->get());
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
     }elseif($method=='get'){
@@ -172,7 +172,7 @@ class PluginServerJson{
      */
     if($data->get('data/params')){
       foreach($data->get('data/params') as $v){
-        $data->set('data/url', str_replace('['.$v.']', wfRequest::get($v), $data->get('data/url')));      }
+        $data->set('data/url', wfPhpfunc::str_replace('['.$v.']', wfRequest::get($v), $data->get('data/url')));      }
     }
     /*
      *

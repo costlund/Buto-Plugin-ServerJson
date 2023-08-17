@@ -1,60 +1,64 @@
-version: '1.10.0'
+version: 1.11.0
 history:
-  '1.10.0':
+  1.11.0:
+    date: '2023-08-17'
+    title: 'PHP 8.2'
+    description: 'Changes according to PHP version 8.2.'
+  1.10.0:
     date: '2021-12-01'
     title: 'Client secret'
     description: 'Add param client_secret. Accept method get.'
-  '1.9.0':
+  1.9.0:
     date: '2021-11-02'
     title: 'Method get return'
     description: 'If data is empty we return message about content is not a json string!'
-  '1.8.0':
+  1.8.0:
     date: '2021-10-26'
-    title: 'Error'
+    title: Error
     description: 'Return array instead of json on error in methods send, get.'
-  '1.7.0':
+  1.7.0:
     date: '2021-10-26'
     title: 'Test widget'
-    description: 'Improvements.'
-  '1.6.0':
+    description: Improvements.
+  1.6.0:
     date: '2021-10-20'
     title: 'Test widget'
     description: 'Add test widget.'
-  '1.5.0':
+  1.5.0:
     date: '2021-01-14'
     title: Token
     description: 'Add token to get and send methods.'
-  '1.4.3':
+  1.4.3:
     date: '2020-12-22'
-    title: Code improvement
+    title: 'Code improvement'
     description: 'Minor changes in method get.'
-  '1.4.2':
+  1.4.2:
     date: '2020-12-20'
-    title: Error content
+    title: 'Error content'
     description: 'Add variable error content.'
-  '1.4.1':
+  1.4.1:
     date: '2019-12-17'
-    title: Error message
+    title: 'Error message'
     description: 'Improved error message.'
-  '1.4.0':
+  1.4.0:
     date: '2019-12-17'
     title: Validation
     description: 'Improved validation method.'
-  '1.3.0':
+  1.3.0:
     date: '2019-10-02'
     title: Delete
     description: 'Add delete in send method.'
-  '1.2.0':
+  1.2.0:
     date: '2019-08-29'
     title: Image
     description: 'Get image method.'
-  '1.1.0':
+  1.1.0:
     date: '2019-07-26'
-    title: Basic auth
+    title: 'Basic auth'
     description: 'Basic auth.'
-  '1.0.0':
+  1.0.0:
     date: '2019-02-07'
-    title: First version
+    title: 'First version'
     description: 'Manifest created.'
 plugin: {  }
 sys:
@@ -64,5 +68,5 @@ sys:
       - '1.0'
 php:
   - '7.2'
-author: Claes Östlund
+author: 'Claes Östlund'
 description: ''
