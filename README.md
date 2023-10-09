@@ -9,19 +9,6 @@ wfPlugin::includeonce('server/json');
 $server = new PluginServerJson();
 ```
 
-### Basic auth
-
-```
-$server->username = '_my_username_';
-$server->password = '_my_password_';
-```
-
-### Token
-
-```
-$server->token = '_my_token_';
-```
-
 ### Send
 
 ```
@@ -29,11 +16,56 @@ $result = $server->send('https://www.world.com', array('name' => 'James Smith', 
 print_r(array($server->error_message, $result));
 ```
 
+#### token
+```
+$server->token = '_my_token_';
+```
+Add header.
+```
+Authorization: Bearer (token)
+```
+
+### client_secret
+```
+$server->client_secret = '_client_secret_';
+```
+Add header.
+```
+Client-Secret: (client_secret)
+```
+
 ### Get
 
 ```
 $result = $server->get('https://www.world.com');
 print_r(array($server->error_message, $result));
+```
+
+#### Basic auth
+```
+$server->username = '_my_username_';
+$server->password = '_my_password_';
+```
+Add header.
+```
+Authorization: Basic (base64_encode-data)
+```
+
+#### Token
+
+```
+$server->token = '_my_token_';
+```
+Add header.
+```
+Authorization: Bearer (my_token)
+```
+
+
+#### Headers
+Add extra headers as second param.
+```
+$result = $server->get('https://www.world.com', array('Authorization' => 'Basic (token)'));
 ```
 
 ### get_image($url)

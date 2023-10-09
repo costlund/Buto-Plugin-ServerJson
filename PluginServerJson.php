@@ -6,6 +6,7 @@ class PluginServerJson{
   public $password = null;
   public $token = null;
   public $client_secret = null;
+  public $http_response_header = null;
   public function send($url, $data, $method = 'post'){
     $method = strtolower($method);
     $this->error_message = null;
@@ -70,22 +71,48 @@ class PluginServerJson{
       return json_decode($result, true);
     }
   }
-  public function get($url){
+  /**
+   * Get data via file_get_contents.
+   * 
+   * @param string $url Api url.
+   * @param array $header Add headers.
+   * @return array
+   */
+  public function get($url, $header = array()){
     $this->error_message = null;
     $context = new PluginWfArray();
+    $header_array = array();
     /**
      * auth
      */
     if($this->username && $this->password){
       $auth = base64_encode($this->username.":".$this->password);
-      $context->set('http/header', "Authorization: Basic $auth");
+      $header_array['Authorization'] = "Basic $auth";
     }elseif($this->token){
-      $context->set('http/header', "Authorization: Bearer ".$this->token);
+      $header_array['Authorization'] = "Bearer ".$this->token;
     }
+    /**
+     * header
+     */
+    if($header){
+      $header_array = array_merge($header, $header_array);
+    }
+    /**
+     * header
+     */
+    $temp = '';
+    foreach($header_array as $k => $v){
+      $temp .= "\r\n$k: $v";
+    }
+    $context->set('http/header', $temp);
     /**
      * get contents
      */
     $data = @file_get_contents($url, false, stream_context_create((array)$context->get()));
+    /**
+     * http_response_header
+     */
+    $this->http_response_header = $http_response_header;
     /**
      * handle error
      */
