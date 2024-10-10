@@ -1,0 +1,141 @@
+readme:
+  name: Buto-Plugin-ServerJson
+  description: |
+    Retrieve json content from server as an array.
+    Get image from server.
+  item:
+    -
+      name: Usage
+      description: |
+        ```
+        wfPlugin::includeonce('server/json');
+        $server = new PluginServerJson();
+        ```
+      item:
+        -
+          name: Token
+          description: |
+            ```
+            $server->token = '_my_token_';
+            ```
+            Adds header.
+            ```
+            Authorization: Bearer (token)
+            ```
+        -
+          name: Client-Secret
+          description: |
+            ```
+            $server->client_secret = '_client_secret_';
+            ```
+            Adds header.
+            ```
+            Client-Secret: (client_secret)
+            ```
+        -
+          name: Basic auth
+          description: |
+            ```
+            $server->username = '_my_username_';
+            $server->password = '_my_password_';
+            ```
+            Adds header.
+            ```
+            Authorization: Basic (base64_encode-data)
+            ```
+    -
+      name: Widgets
+      item:
+        -
+          name: widget_request
+          description: |
+            Widget to test request.
+            ```
+              -
+                type: widget
+                data:
+                  plugin: server/json
+                  method: request
+                  data:
+                    type: get
+                    url: 'http://localhost:8080/users'
+              -
+                type: widget
+                data:
+                  plugin: server/json
+                  method: request
+                  data:
+                    type: get
+                    url: 'http://localhost:8080/user/2'
+              -
+                type: widget
+                data:
+                  plugin: server/json
+                  method: request
+                  data:
+                    type: post
+                    url: 'http://localhost:8080/save'
+                    data:
+                      firstName: 'James'
+                      lastName: 'Smith'
+                      age: 88
+                      occupation: 'Trainer'
+              -
+                type: widget
+                data:
+                  plugin: server/json
+                  method: request
+                  data:
+                    type: delete
+                    url: 'http://localhost:8080/delete/13'
+              -
+                type: widget
+                data:
+                  plugin: server/json
+                  method: request
+                  data:
+                    type: put
+                    url: 'http://localhost:8080/update/2'
+                    data:
+                      firstName: 'James'
+                      lastName: 'Andersson'
+                      age: 88
+                      occupation: 'Trainer'
+            ```
+    -
+      name: Methods
+      item:
+        -
+          name: send
+          description: |
+            ```
+            $result = $server->send('https://www.world.com', array('name' => 'James Smith', 'phone' => '555-5555'), 'post');
+            print_r(array($server->error_message, $result));
+            ```
+        -
+          name: get
+          description: |
+            ```
+            $result = $server->get('https://www.world.com');
+            print_r(array($server->error_message, $result));
+            ```
+            Headers.
+            Add headers as second param.
+            ```
+            $result = $server->get('https://www.world.com', array('Authorization' => 'Basic (token)'));
+            ```
+        -
+          name: get_image
+          description: |
+            Use this method to get image.
+            ```
+            public function page_image(){
+              $str = $server->get_image('_url_to_jpeg_image_');
+              header('Content-type: image/jpeg');
+              exit($str);
+            }
+            ```
+        -
+          name: validate
+          description: |
+            Validate json request.

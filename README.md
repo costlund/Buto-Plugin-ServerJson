@@ -1,88 +1,52 @@
 # Buto-Plugin-ServerJson
 
-Send and retrieve json content in an array.
+<p>Retrieve json content from server as an array.
+Get image from server.</p>
 
-## PHP
+<a name="key_0"></a>
 
-```
-wfPlugin::includeonce('server/json');
-$server = new PluginServerJson();
-```
+## Usage
 
-### Send
+<pre><code>wfPlugin::includeonce('server/json');
+$server = new PluginServerJson();</code></pre>
 
-```
-$result = $server->send('https://www.world.com', array('name' => 'James Smith', 'phone' => '555-5555'), 'post');
-print_r(array($server->error_message, $result));
-```
+<a name="key_0_0"></a>
 
-#### token
-```
-$server->token = '_my_token_';
-```
-Add header.
-```
-Authorization: Bearer (token)
-```
+### Token
 
-### client_secret
-```
-$server->client_secret = '_client_secret_';
-```
-Add header.
-```
-Client-Secret: (client_secret)
-```
+<pre><code>$server-&gt;token = '_my_token_';</code></pre>
+<p>Adds header.</p>
+<pre><code>Authorization: Bearer (token)</code></pre>
 
-### Get
+<a name="key_0_1"></a>
 
-```
-$result = $server->get('https://www.world.com');
-print_r(array($server->error_message, $result));
-```
+### Client-Secret
 
-#### Basic auth
-```
-$server->username = '_my_username_';
-$server->password = '_my_password_';
-```
-Add header.
-```
-Authorization: Basic (base64_encode-data)
-```
+<pre><code>$server-&gt;client_secret = '_client_secret_';</code></pre>
+<p>Adds header.</p>
+<pre><code>Client-Secret: (client_secret)</code></pre>
 
-#### Token
+<a name="key_0_2"></a>
 
-```
-$server->token = '_my_token_';
-```
-Add header.
-```
-Authorization: Bearer (my_token)
-```
+### Basic auth
+
+<pre><code>$server-&gt;username = '_my_username_';
+$server-&gt;password = '_my_password_';</code></pre>
+<p>Adds header.</p>
+<pre><code>Authorization: Basic (base64_encode-data)</code></pre>
+
+<a name="key_1"></a>
+
+## Widgets
 
 
-#### Headers
-Add extra headers as second param.
-```
-$result = $server->get('https://www.world.com', array('Authorization' => 'Basic (token)'));
-```
 
-### get_image($url)
-Use this method to get image.
+<a name="key_1_0"></a>
 
-```
-public function page_image(){
-  $str = $server->get_image('_url_to_jpeg_image_');
-  header('Content-type: image/jpeg');
-  exit($str);
-}
-```
+### widget_request
 
-### Request widget
-Widget to test request.
-```
-  -
+<p>Widget to test request.</p>
+<pre><code>  -
     type: widget
     data:
       plugin: server/json
@@ -131,6 +95,45 @@ Widget to test request.
           firstName: 'James'
           lastName: 'Andersson'
           age: 88
-          occupation: 'Trainer'
-```
+          occupation: 'Trainer'</code></pre>
+
+<a name="key_2"></a>
+
+## Methods
+
+
+
+<a name="key_2_0"></a>
+
+### send
+
+<pre><code>$result = $server-&gt;send('https://www.world.com', array('name' =&gt; 'James Smith', 'phone' =&gt; '555-5555'), 'post');
+print_r(array($server-&gt;error_message, $result));</code></pre>
+
+<a name="key_2_1"></a>
+
+### get
+
+<pre><code>$result = $server-&gt;get('https://www.world.com');
+print_r(array($server-&gt;error_message, $result));</code></pre>
+<p>Headers.
+Add headers as second param.</p>
+<pre><code>$result = $server-&gt;get('https://www.world.com', array('Authorization' =&gt; 'Basic (token)'));</code></pre>
+
+<a name="key_2_2"></a>
+
+### get_image
+
+<p>Use this method to get image.</p>
+<pre><code>public function page_image(){
+  $str = $server-&gt;get_image('_url_to_jpeg_image_');
+  header('Content-type: image/jpeg');
+  exit($str);
+}</code></pre>
+
+<a name="key_2_3"></a>
+
+### validate
+
+<p>Validate json request.</p>
 
