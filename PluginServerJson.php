@@ -7,7 +7,7 @@ class PluginServerJson{
   public $token = null;
   public $client_secret = null;
   public $http_response_header = null;
-  public function send($url, $data, $method = 'post'){
+  public function send($url, $data = null, $method = 'post', $header = array()){
     $method = strtolower($method);
     $this->error_message = null;
     /**
@@ -31,6 +31,14 @@ class PluginServerJson{
        * client_secret
        */
       $httpheader->set(true, "Client-Secret: ".$this->client_secret);
+    }
+    /**
+     * headers
+     */
+    if($header){
+      foreach($header as $k => $v){
+        $httpheader->set(true, "$k: $v");
+      }
     }
     /**
      * 

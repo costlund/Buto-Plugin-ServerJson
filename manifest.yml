@@ -1,5 +1,9 @@
-version: 1.12.1
+version: 1.13.0
 history:
+  1.13.0:
+    date: '2025-03-24'
+    title: 'Header'
+    description: 'Add header to send method.'
   1.12.1:
     date: '2024-10-10'
     title: 'Readme'

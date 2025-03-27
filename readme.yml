@@ -112,6 +112,16 @@ readme:
             $result = $server->send('https://www.world.com', array('name' => 'James Smith', 'phone' => '555-5555'), 'post');
             print_r(array($server->error_message, $result));
             ```
+            To send a get request in this method.
+            ```
+            $result = $server->send('https://www.world.com', null, 'get');
+            print_r(array($server->error_message, $result));
+            ```
+            To add extra headers.
+            ```
+            $result = $server->send('https://www.world.com', null, 'get', array('User-ID' => '1234'));
+            print_r(array($server->error_message, $result));
+            ```
         -
           name: get
           description: |
