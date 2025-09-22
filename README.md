@@ -109,6 +109,12 @@ $server-&gt;password = '_my_password_';</code></pre>
 
 <pre><code>$result = $server-&gt;send('https://www.world.com', array('name' =&gt; 'James Smith', 'phone' =&gt; '555-5555'), 'post');
 print_r(array($server-&gt;error_message, $result));</code></pre>
+<p>To send a get request in this method.</p>
+<pre><code>$result = $server-&gt;send('https://www.world.com', null, 'get');
+print_r(array($server-&gt;error_message, $result));</code></pre>
+<p>To add extra headers.</p>
+<pre><code>$result = $server-&gt;send('https://www.world.com', null, 'get', array('User-ID' =&gt; '1234'));
+print_r(array($server-&gt;error_message, $result));</code></pre>
 
 <a name="key_2_1"></a>
 
