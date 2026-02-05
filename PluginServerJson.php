@@ -157,6 +157,15 @@ class PluginServerJson{
     }
   }
   private function validate($str){
+    /**
+     * Handle if empty string.
+     */
+    if(!strlen($str)){
+      $str = '{}';
+    }
+    /**
+     * 
+     */
     $json = json_decode($str);
     $message = '';
     if($json===false){

@@ -1,5 +1,9 @@
-version: 1.13.1
+version: 1.14.0
 history:
+  1.14.0:
+    date: '2026-01-27'
+    title: 'Validate'
+    description: 'Handle empty string in method validate.'
   1.13.1:
     date: '2025-09-22'
     title: 'Readme'
