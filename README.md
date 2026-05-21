@@ -7,12 +7,16 @@ Get image from server.</p>
 
 ## Usage
 
+
+
 <pre><code>wfPlugin::includeonce('server/json');
 $server = new PluginServerJson();</code></pre>
 
 <a name="key_0_0"></a>
 
 ### Token
+
+
 
 <pre><code>$server-&gt;token = '_my_token_';</code></pre>
 <p>Adds header.</p>
@@ -22,6 +26,8 @@ $server = new PluginServerJson();</code></pre>
 
 ### Client-Secret
 
+
+
 <pre><code>$server-&gt;client_secret = '_client_secret_';</code></pre>
 <p>Adds header.</p>
 <pre><code>Client-Secret: (client_secret)</code></pre>
@@ -29,6 +35,8 @@ $server = new PluginServerJson();</code></pre>
 <a name="key_0_2"></a>
 
 ### Basic auth
+
+
 
 <pre><code>$server-&gt;username = '_my_username_';
 $server-&gt;password = '_my_password_';</code></pre>
@@ -41,9 +49,13 @@ $server-&gt;password = '_my_password_';</code></pre>
 
 
 
+
+
 <a name="key_1_0"></a>
 
 ### widget_request
+
+
 
 <p>Widget to test request.</p>
 <pre><code>  -
@@ -103,9 +115,13 @@ $server-&gt;password = '_my_password_';</code></pre>
 
 
 
+
+
 <a name="key_2_0"></a>
 
 ### send
+
+
 
 <pre><code>$result = $server-&gt;send('https://www.world.com', array('name' =&gt; 'James Smith', 'phone' =&gt; '555-5555'), 'post');
 print_r(array($server-&gt;error_message, $result));</code></pre>
@@ -120,6 +136,8 @@ print_r(array($server-&gt;error_message, $result));</code></pre>
 
 ### get
 
+
+
 <pre><code>$result = $server-&gt;get('https://www.world.com');
 print_r(array($server-&gt;error_message, $result));</code></pre>
 <p>Headers.
@@ -129,6 +147,8 @@ Add headers as second param.</p>
 <a name="key_2_2"></a>
 
 ### get_image
+
+
 
 <p>Use this method to get image.</p>
 <pre><code>public function page_image(){
@@ -140,6 +160,8 @@ Add headers as second param.</p>
 <a name="key_2_3"></a>
 
 ### validate
+
+
 
 <p>Validate json request.</p>
 
